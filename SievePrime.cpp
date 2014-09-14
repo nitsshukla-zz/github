@@ -11,15 +11,20 @@ void runEratosthenesSieve(int upperBound) {
       memset(isComposite, 0, sizeof(bool) * (upperBound + 1));
       for (int m = 2; m <= upperBoundSquareRoot; m++) {
             if (!isComposite[m]) {
-                  myfile << m << ",";
+                  myfile << 1 << ",";
 
                   for (int k = m * m; k <= upperBound; k += m)
                         isComposite[k] = true;
             }
+           else myfile << 0 << ",";
       }
       for (int m = upperBoundSquareRoot; m <= upperBound; m++)
             if (!isComposite[m])
-                  myfile << m << "," ;
+                  {
+                      //myfile << m << "," ;
+                  myfile << 1 << ",";
+                  }
+               else   myfile << 0 << ",";
       delete [] isComposite;
 }
 
@@ -27,6 +32,6 @@ void runEratosthenesSieve(int upperBound) {
 int main()
 {
     myfile.open("out.txt");
-    runEratosthenesSieve(10000000000);
+    runEratosthenesSieve(sqrt(10000000000));
     return 0;
 }
